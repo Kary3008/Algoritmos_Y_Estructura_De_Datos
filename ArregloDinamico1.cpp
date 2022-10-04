@@ -1,11 +1,11 @@
 /*
-	Name: Arreglo Dinamico
+	Name: Arreglo Din�mico
 	Copyright: @KarydNa9
 	Author: Bautista Bautista Karina
 	Date: 02/09/22 16:49
-	Description: Crear un arreglo dinamico de tamano n. El valor de n, pasalo como parametro en el main o podelo al usuario.
+	Description: Crear un arreglo din�mico de tama�o n. El valor de n, p�salo como par�metro en el main o p�delo al usuario.
 	Llena tu arreglo con valores aleatorios del 0 al 100,000.
-	Realiza una funcion que ordene el arreglo de forma ascendente. Tu funcion debe recibir como parametro tu arreglo.
+	Realiza una funci�n que ordene el arreglo de forma ascendente. Tu funci�n debe recibir como par�metro tu arreglo.
 	
 */
 
@@ -17,7 +17,7 @@ main(){
 	printf("\tArreglo Dinamico\n");
 	printf("\nIngrese el numero de elementos:");
 	scanf("%d",&n);
-	int *a = new (int[n]);  //declara un arreglo dinamico
+	int *a = new int[n];  //declara un arreglo din�mico
 	
 	//bucle para ingresar elementos
 	for(i=0;i<n;i++)
@@ -64,3 +64,7 @@ main(){
 		printf("%d | ", a[i]);
 	}
 }
+
+//delete[] a;
+//fflush(atdin);
+//getchar();
