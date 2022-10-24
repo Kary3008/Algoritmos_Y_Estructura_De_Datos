@@ -1,108 +1,120 @@
 #include <stdio.h>
 
-void merge_sort(int a[], int length);
-void merge_sort_recursion(int a[], int l, int r);
-void merge_sorted_arrays(int a[], int l, int m, int r);
+void merge_sort(int a[], int length); //llevará la matriz, así como su longitud.
+void merge_sort_recursion(int a[], int left, int right); //lleva el paso recursivo del algoritmo, donde se divide continuamente la matriz no ordenada en porciones más pequeñas.
+void merge_sorted_arrays(int a[], int left, int mid, int right); //fusionará las dos porciones ordenadas de la matriz.
 
 int main()
 {
-  // test array and length
+  // array y length
   int array[] = { 9, 4, 8, 1, 7, 0, 3, 2, 5, 6};
   int length = 10;
-
-  // sort the array using merge sort
+  //imprime matriz desordenada
+  printf("Matriz Desordenada");
+  for(int i = 0; i < length; i++)
+  {
+      printf("%i | ", array[i]);
+  }
+  printf("\n\n");
+  //imprime cada elemento de la matriz ordenada.
+  printf("Matriz Ordenada por Merge_Sort");
   merge_sort(array, length);
-
-  // print out the array elements to verify they have been sorted
   for (int i = 0; i < length; i++)
-    printf("%d ", array[i]);
-  printf("\n");
+    printf("%d | ", array[i]);
 
   return 0;
 }
 
-// Performs a merge sort of the array a with the given length, the function
-// provides an easier/prettier interface for using merge sort for the
-// programmer as they simply need to provide the array and its length
+/*Se proporciona la matriz y su longitud.*/
 void merge_sort(int a[], int length)
 {
-  // call the merge sort recursion function, the left index of 0 and the
-  // right index of length - 1 are provided as we are initially looking
-  // at sorting "the entire array"
+  //se clasifica toda la matriz -> (a[], left, right)
   merge_sort_recursion(a, 0, length - 1);
 }
 
-// Applies the merge sort algorithm to the array a between the left index l
-// and the right index r.  This function implements the recursive
-// divide-and-conquer step of the merge sort algorithm, splitting the array
-// portion between l...r at the middle, and calling itself on each portion,
-// before applying the function to merge the sorted portions of the array
-// that will result.
-void merge_sort_recursion(int a[], int l, int r)
+/*dividiendo la parte de la matriz entre l...r en el medio y llamándose
+a sí misma en cada parte, antes de aplicar la función para combinar las
+partes ordenadas de la matriz.
+*/
+void merge_sort_recursion(int a[], int left, int right)
 {
-  // we stop recursion when l >= r
-  if (l < r)
+  //la recursión se detiene cuando left es mayor o igual que right, mientras ejecuta lo siguiente
+  if (left < right)
   {
-    // find the midpoint of l and r
-    int m = l + (r - l) / 2;
+    //encontramos el punto medio entre left y right.
+    int mid = left + (right - left) / 2;
 
-    // apply the function recursively to the left and right portions split
-    // at the midpoint
-    merge_sort_recursion(a, l, m);
-    merge_sort_recursion(a, m + 1, r);
+    //llamamos a la función en porciones más pequeñas de la matriz en la parte izquierda.
+    merge_sort_recursion(a, left, mid);
+    //luego llamamos a la recursión de ordenación por fusión en la parte derecha.
+    merge_sort_recursion(a, mid + 1, right);
 
-    // at this point both portions of the array have been sorted, and we now
-    // merge the sorted portions of the array
-    merge_sorted_arrays(a, l, m, r);
+    //ambas partes de la matriz se han ordenado, ahora se necesita fusionar las partes ordendadas
+    merge_sorted_arrays(a, left, mid, right);
   }
 }
 
-// merges the two sorted portions of the array a between the indexes l ... m
-// and m + 1 ... r
-void merge_sorted_arrays(int a[], int l, int m, int r)
+//fusiona las dos porciones ordenadas entre los índices (l ... m) y (m + 1 ... r)
+void merge_sorted_arrays(int a[], int left, int mid, int right)
 {
-  // calculate the length of the left and right portions of the array
-  int left_length = m - l + 1;
-  int right_length = r - m;
+  //calcula la longitud, tanto de la izq. como de la der.
+  int left_length = mid - left + 1; //long left.
+  int right_length = right - mid; //long right.
 
-  // create temporary arrays to store these portions
+  //se crea submatrices temporales para copiar las porciones de la matriz a.
   int temp_left[left_length];
   int temp_right[right_length];
 
-  // used as index/counter variables for the 3 arrays a, temp_left, temp_right
+  // usamos un índice/contador para los 3 arrays temp_left, temp_right, matriz A.
   int i, j, k;
 
-  // copy the left portion into the temp_left array
+  // copiamos la porción left_length dentro de temp_left array
   for (int i = 0; i < left_length; i++)
-    temp_left[i] = a[l + i];
+    //copia desde el índice l hasta llegar a i que es menor que left_length
+    temp_left[i] = a[left + i];
 
-  // copy the right portion into the temp_right array
+  // copiamos la porción right_length dentro de temp_right array
   for (int i = 0; i < right_length; i++)
-    temp_right[i] = a[m + 1 + i];
+    //empieza desde (m + 1) y de así en adelante con i hasta right_length
+    temp_right[i] = a[mid + 1 + i];
 
-  // Use i to move through the indexes of temp_left, j to move through the
-  // indexes of temp_right, and k to move through the portion of the array
-  // a from l ... r.  We basically keep checking the "head" of temp_left
-  // and temp_right (knowing both arrays are sorted) and put the smaller of
-  // the two into array a (using i, j, k to move through the arrays).  When
-  // we run out elements in either temp_left or temp_right, the remaining
-  // elements from the other array will be copied over into a.
-  for (i = 0, j = 0, k = l; k <= r; k++)
+  /*fusiona las dos porciones ordenadas de la matriz a entre los índices l ... m y m + 1 ... r
+
+  Use i para moverse a través de los índices de temp_left, j para moverse a
+  través de los índices de temp_right y k para moverse a través de la parte de
+  la matriz a de l ... r.
+  Colocamos la matriz más pequeña de las dos en la matriz A (usando i, j, k para
+  movernos por las matrices). Cuando agotamos elementos en temp_left o temp_right,
+  los elementos restantes de la otra matriz se copiarán en la matriz A.*/
+  for (i = 0, j = 0, k = left; k <= right; k++)
   {
-    // so long as we have not already reached the end of the temp_left array
-    // with our variable i, then if the next element in the left_temp array
-    // is smaller OR if we have reached the end of the temp_right array,
-    // then store the next element from temp_left into the next element in
-    // the array a
-    if ((i < left_length) &&
+    /*siempre que no hayamos llegado al final de la matriz temp_left con
+    nuestra variable i, si el siguiente elemento de la matriz left_temp es
+    más pequeño O si hemos llegado al final de la matriz temp_right,
+    almacene el siguiente elemento de temp_left en el siguiente elemento
+    en la matriz A*/
+
+    //PRUEBA DE ESCRITORIO
+      /*             i i+1
+         temp_left:  4, 9, 12
+                     j j+1
+         temp_right: 5, 8, 14
+                     k k+1
+                  a: 4, 5,
+      */
+    if ((i < left_length) && //si i no es menor que la longitud izq
         (j >= right_length || temp_left[i] <= temp_right[j]))
+        //si j es mayor o igual que la lomgitud derecha
+        //verifica si entre la matriz izq y derecha es menor o igual sino se
+        //ejecuta el else
     {
-      a[k] = temp_left[i];
+      a[k] = temp_left[i]; //el índice right se guarda en
       i++;
     }
-    // otherwise if the next element in temp_right than the next element in
-    // temp_left OR we have reached the end of temp_left, store the next
-    // element from the temp_right array into the next element in array a
+    /*de lo contrario, si el siguiente elemento en temp_right que el siguiente
+    elemento en temp_left O hemos llegado al final de temp_left, almacene el
+    siguiente elemento de la matriz temp_right en el siguiente elemento de la
+    matriz a*/
     else
     {
       a[k] = temp_right[j];
@@ -112,24 +124,24 @@ void merge_sorted_arrays(int a[], int l, int m, int r)
 }
 
 
-// Example visualization of the merge sort algorithm:
-//
-//          [38, 27, 43, 3, 9, 82, 10]
-//                     /   \
-//       [38, 27, 43, 3]   [9, 82, 10]
-//        /         |         |      \
-//   [38, 27]    [43, 3]   [9, 82]   [10]
-//    /   |      /    |    /    \      |
-// [38]  [27]  [43]  [3]  [9]   [82]  [10]
-//    \  /       \   /     \     /     |
-//   [27, 38]    [3, 43]   [9, 82]    [10]
-//       \         /          \        /
-//     [3, 27, 38, 43]        [9, 10, 82]
-//           \                  /
-//          [3, 9, 10, 27, 38, 43, 82]
-//
-// The array is first broken up into progressively smaller unsorted portions of
-// the array, and once we have "sub-arrays" of 1 element they are by definition
-// sorted arrays.  From here the "sorted arrays" are merged together until we
-// arrive at the complete sorted array.
-//
+/* Example visualization of the merge sort algorithm:
+
+          [38, 27, 43, 3, 9, 82, 10]
+                     /   \
+       [38, 27, 43, 3]   [9, 82, 10]
+        /         |         |      \
+   [38, 27]    [43, 3]   [9, 82]   [10]
+    /   |      /    |    /    \      |
+ [38]  [27]  [43]  [3]  [9]   [82]  [10]
+    \  /       \   /     \     /     |
+   [27, 38]    [3, 43]   [9, 82]    [10]
+       \         /          \        /
+     [3, 27, 38, 43]        [9, 10, 82]
+           \                  /
+          [3, 9, 10, 27, 38, 43, 82]
+
+ The array is first broken up into progressively smaller unsorted portions of
+ the array, and once we have "sub-arrays" of 1 element they are by definition
+ sorted arrays.  From here the "sorted arrays" are merged together until we
+ arrive at the complete sorted array.
+*/
