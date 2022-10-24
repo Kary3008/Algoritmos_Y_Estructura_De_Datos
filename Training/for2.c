@@ -5,7 +5,7 @@
  {
  	int i, suma = 0;
  	
- 	for(i=1; i<=10; i++)
+ 	for(i=1; i<=10; i++) //aumentar en 2: i+=2 -> (i=i+2)
  	{
  		if(i%2==0)//si se divide entre dos y el residuo es cero, el resultado es par.
  		{
