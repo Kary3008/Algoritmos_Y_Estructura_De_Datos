@@ -1,8 +1,10 @@
 #include <stdio.h>
+void binary_search(int a[], int x, int low, int high);
 
 int main()
 {
-	int n, i, a, low, high, mid;
+	int n, i, x;
+	
 	printf("Enter the number of elements: ");
 	scanf("%d", &n);
 	int array[n];
@@ -11,19 +13,29 @@ int main()
 	for(i=0; i<n; i++)
 		scanf("%d", &array[i]);
 	printf("Enter the value to find: ");
-	scanf("%d", &a);
-	low=0;
-	high = n-1;
+	scanf("%d", &x);
+	
+	int low=0;
+	int high= n-1;
+	
+	binary_search(array,x,low,high);
+	
+	return 0;
+}
+
+void binary_search(int a[], int x, int low, int high)
+{
+	int mid;
 	
 	mid = (low + high) /2;
 	
 	while(low<=high)
 	{
-		if(array[mid]<a)
+		if(a[mid]<x)
 			low= mid +1;
-		else if(array[mid]==a)
+		else if(a[mid]==x)
 		{
-			printf("%d found at the location %d", a, mid+1);
+			printf("%d found at the location %d", x, mid+1);
 			break;
 		}
 		else 
@@ -31,6 +43,5 @@ int main()
 		mid = (low + high)/2;
 	}
 	if(low>high)
-	printf("%d is not present in the array, ", a);
-	return 0;
+	printf("%d is not present in the array, ", x);
 }
