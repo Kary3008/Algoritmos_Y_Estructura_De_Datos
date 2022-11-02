@@ -5,12 +5,20 @@ void seqSearch(int arr[], int start, int end , int key);
 
 int main()
 {
-	int arr[]={1,3,4,6,9,10,15,19,25,29,60,90,100};
-	int n = sizeof(arr)/sizeof(arr[0]);
-	/*int arr[100];
-	int n;*/
+	//int arr[]={1,3,4,6,9,10,15,19,25,29,60,90,100};
+	//int n = sizeof(arr)/sizeof(arr[0]);
+	int arr[100];
+	int n;
 	int key, i;
 	
+	printf("How many elements you want in array: ");
+	scanf("%d", &n);
+	
+	printf("Enter array elements\n");
+	for(i = 0; i < n; i++)
+		scanf("%d", &arr[i]);
+		
+	printf("Array elements are below\n");
 	for(i = 0; i < n; i++)
 		printf("%d ", arr[i]);
 		
@@ -71,7 +79,7 @@ void seqSearch(int arr[], int start, int end , int key)
 		}
 	}
 	if(flag == 1)
-		printf("key is found at position number %d", i);
+		printf("key is found at position number %d", i + 1); //i+1
 	else
 	printf("Key is not found in array");
 }
