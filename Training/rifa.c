@@ -17,17 +17,17 @@ int main()
 {
 	srand(time(NULL)); //generar diferentes números.
 	int num; //almacenar los numeros
-	int numbers[6]; //seguimiento de nums. repetidos.
+	int numbers[30]; //seguimiento de nums. repetidos.
 	bool unique;
 	
-	for (int i = 0; i < 6; i++)
+	for (int i = 0; i < 30; i++)
 	{
 		/*num = (rand()%59)+1;
 		printf("number %d: %d \n", i+1, num);*/
 		do
 		{
-			num = (rand()%59) + 1; //generar el num. aleatorio 
-			//se agrega un +1 porque sólo llega de 0 a 58 siendo de 1 a 59
+			num = (rand()%30) + 1; //generar el num. aleatorio 
+			//se agrega un +1 porque sólo llega de 0 a 29 siendo de 1 a 30
 			unique = true; //asumiremos que hay valores únicos.
 			for (int j = 0; j < i; j++)
 				if(numbers[j] == num) //siempre que no sea único entonces se genera un número único otra vez
