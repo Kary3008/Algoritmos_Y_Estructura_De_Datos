@@ -16,7 +16,7 @@
 
 void indexedSearch(int arr[], int n, int key);
 void seqSearch(int arr[], int start, int end , int key);
-int numAleatorio(int numbers[]);
+//int numAleatorio(int numbers[]);
 //void cadenaNum(char* arr[], int n);
 //void cadenaNombre(char nombres[][MaxCad], int n);
 
@@ -39,7 +39,7 @@ int main()
 	char* arr[MaxCad];
 	arr[0]="SA";
 	arr[1]="Alan";
-	arr[2]="DIego";	
+	arr[2]="Diego";	
 	arr[3]="Anya";
 	arr[4]="Oscar";	
 	arr[5]="SA";
@@ -71,11 +71,11 @@ int main()
 	//Imprime matriz	
 	for(i=0; i<MaxCad; i++)
 	{
-		printf("%s\n", arr[i]);
+		printf("Participante %i: %s \n", i, arr[i]);
 	}     
 
 	//Buscar un número aleatorio
-	/*srand(time(NULL)); //generar diferentes números.
+	srand(time(NULL)); //generar diferentes números.
 	int num; //almacena los numeros
 	int numbers[30]; //seguimiento de nums. repetidos.
 	bool unique; //otorga un valor único
@@ -93,13 +93,13 @@ int main()
 		} while(!unique); //siempre y cuando no sea el valor único entonces seguirá el ciclo.
 		numbers[i] = num;
 		//printf("number %i: %i \n", i + 1, key);
-	}*/
+	}
 	
 	//int num;
-	int numbers[0];
+	//int numbers[0];
 	//num = (rand()%31);
 	//numAleatorio(num, numbers);
-	//printf("\n\nnumber win: %i \n", num);
+	printf("\n\nnumber win: %i \n", num);
 	
 	/*int num;
 	num = (rand()%31);
@@ -108,10 +108,10 @@ int main()
 	//int n = MaxCad;
 	
 	//indexedSearch(arrN, n, key);
-	int numA;
-	numA =numAleatorio(numbers);
-	printf("\n\nnumber win: %i \n", numA);
-	key=numA;
+	//int numA;
+	//numA =numAleatorio(numbers);
+	//printf("\n\nnumber win: %i \n", numA);
+	key=num;
 	
 	char* a;
 	for(j=0; j<=key; j++)
@@ -122,12 +122,13 @@ int main()
 			printf("\nEL ganador es:%s ", a);
 		}
 		else{
-			numAleatorio(numbers);
+			//numAleatorio(numbers);
+			printf("No hay un participante en este boleto.");
 		}	
 	//seqSearch(arr, 0, n-1, key);
 }
 
-int numAleatorio(int numbers[])
+/*int numAleatorio(int numbers[])
 {
 	int num;
 	//Buscar un número aleatorio
@@ -154,7 +155,7 @@ int numAleatorio(int numbers[])
 	//printf("\n\nnumber win: %i \n", num);
 }
 
-
+*/
 /*void cadenaNombre(char nombres[][MaxCad], int n)
 {
 	int i; // max = 0, imax = 0;
@@ -211,6 +212,5 @@ void seqSearch(int arr[], int start, int end , int key)
 	}
 	if(flag == 1)
 		printf("key is found at position number %d", i + 1); //i+1
-	else
-	printf("Key is not found in array");
+	
 }
