@@ -16,6 +16,7 @@
 
 void indexedSearch(int arr[], int n, int key);
 void seqSearch(int arr[], int start, int end , int key);
+int numAleatorio(int numbers[]);
 //void cadenaNum(char* arr[], int n);
 //void cadenaNombre(char nombres[][MaxCad], int n);
 
@@ -31,14 +32,14 @@ int main()
 		"Sarita", "Danna Paola", "SA", "Angel", "Kevin", "SA"
 	};*/
 	
-	int arrN[]={1,2,3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31}; //nombres
+	int arrN[]={1,2,3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30}; //nombres
 	int n = sizeof(arrN)/sizeof(arrN[0]);
 	int key;
 	
 	char* arr[MaxCad];
-	arr[0]="Diego";
+	arr[0]="SA";
 	arr[1]="Alan";
-	arr[2]="SA";	
+	arr[2]="DIego";	
 	arr[3]="Anya";
 	arr[4]="Oscar";	
 	arr[5]="SA";
@@ -67,18 +68,14 @@ int main()
 	arr[28]="SA";
     arr[29]="Kary";
 	    
-	//Imprime matriz
-	//cadenaNum(arr, n);	
+	//Imprime matriz	
 	for(i=0; i<MaxCad; i++)
 	{
 		printf("%s\n", arr[i]);
 	}     
-	//printf("\nEl elegido: %s ", arr[2]);
-	//cadenaNombre(nombres, tam);
-		
+
 	//Buscar un número aleatorio
-	srand(time(NULL)); //generar diferentes números.
-	//int key;
+	/*srand(time(NULL)); //generar diferentes números.
 	int num; //almacena los numeros
 	int numbers[30]; //seguimiento de nums. repetidos.
 	bool unique; //otorga un valor único
@@ -87,7 +84,63 @@ int main()
 	{
 		do
 		{
-			num = (rand()%30) + 1; //generar el num. aleatorio 
+			num = (rand()%31); //generar el num. aleatorio 
+			//se agrega un +1 porque sólo llega de 0 a 29 siendo de 1 a 30
+			unique = true; //asumiremos que hay valores únicos.
+			for (int j = 0; j < i; j++)
+				if(numbers[j] == num) //siempre que no sea único entonces se genera un número único otra vez
+					unique = false;
+		} while(!unique); //siempre y cuando no sea el valor único entonces seguirá el ciclo.
+		numbers[i] = num;
+		//printf("number %i: %i \n", i + 1, key);
+	}*/
+	
+	//int num;
+	int numbers[0];
+	//num = (rand()%31);
+	//numAleatorio(num, numbers);
+	//printf("\n\nnumber win: %i \n", num);
+	
+	/*int num;
+	num = (rand()%31);
+	key = numAleatorio(num); //el numero ganador es el valor que se debe buscar  */
+
+	//int n = MaxCad;
+	
+	//indexedSearch(arrN, n, key);
+	int numA;
+	numA =numAleatorio(numbers);
+	printf("\n\nnumber win: %i \n", numA);
+	key=numA;
+	
+	char* a;
+	for(j=0; j<=key; j++)
+		a=arr[key];
+		if(a!="SA")
+		{
+			indexedSearch(arrN, n, key);
+			printf("\nEL ganador es:%s ", a);
+		}
+		else{
+			numAleatorio(numbers);
+		}	
+	//seqSearch(arr, 0, n-1, key);
+}
+
+int numAleatorio(int numbers[])
+{
+	int num;
+	//Buscar un número aleatorio
+	srand(time(NULL)); //generar diferentes números.
+	//int num; //almacena los numeros
+	//int numbers[30]; //seguimiento de nums. repetidos.
+	bool unique; //otorga un valor único
+	
+	for (int i = 0; i < 30; i++)
+	{
+		do
+		{
+			num = (rand()%31); //generar el num. aleatorio 
 			//se agrega un +1 porque sólo llega de 0 a 29 siendo de 1 a 30
 			unique = true; //asumiremos que hay valores únicos.
 			for (int j = 0; j < i; j++)
@@ -97,24 +150,10 @@ int main()
 		numbers[i] = num;
 		//printf("number %i: %i \n", i + 1, key);
 	}
-	char* a;
-	for(j=0; j<=num; j++)
-	
-			a=arr[num];
-		
-		printf("\n %s ", a);
-		
-		
 
-	printf("\n\nnumber win: %i \n", num);
-	
-	//printf("\n\nnumber win: %i \n", arr[num]);
-	key = num; //el numero ganador es el valor que se debe buscar  
-		
-	//int n = MaxCad;
-	indexedSearch(arrN, MaxCad, key);
-	//seqSearch(arr, 0, n-1, key);
+	//printf("\n\nnumber win: %i \n", num);
 }
+
 
 /*void cadenaNombre(char nombres[][MaxCad], int n)
 {
@@ -134,9 +173,9 @@ int main()
 
 void indexedSearch(int arr[], int n, int key)
 {
-	int index[30], i;
+	int index[31], i;
 	int j = 0, x = 0, start, end;
-	int bs = 4;
+	int bs = 2;
 	
 	for(i=0; i<n; i=i+bs)
 		index[x++]=i;
