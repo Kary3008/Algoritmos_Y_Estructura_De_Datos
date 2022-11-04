@@ -12,11 +12,10 @@ int main()
 		"Kary", "Diego", "Alan", "Oscar", "SA" , "Jos", "Alonso", "SA", "SA", 
 		"Ana Maria", "SA", "SA", "SA", "SA", "Alfredo", "Mariel", "SA", 
 		"Omar", "SA", "Katy", "Natalia", "Sofia", "SA", "Sandra", "SA", 
-		"Sarita", "Danna Paola", "SA", "Angel", "Kevin", "SA"
+		"Sarita", "Danna Paola", "SA", "Angel", "Kevin"
 	};
 	
 	cadenaNombre(nombres, 30);
-	//printf("%s", cadenaNombre(nombres, 30)); //cadenaNombre (nombres[][MaxCad], int n=6)
 	
 	return 0;
 }
