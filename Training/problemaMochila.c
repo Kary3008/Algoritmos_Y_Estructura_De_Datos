@@ -77,5 +77,5 @@ int main()
 		}
 		i++;
 	}
-	printf("El valor maximo d ela mochila es: %.1f", valmax);
+	printf("El valor maximo de la mochila es: %.1f", valmax);
 }
