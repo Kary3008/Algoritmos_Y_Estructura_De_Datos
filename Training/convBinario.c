@@ -6,6 +6,7 @@
 
 //char *binario(unsigned int n);
 //char *binario(unsigned int n);
+//int binario(int num);
 
 int main()
 {
@@ -15,26 +16,26 @@ int main()
 //	printf("Ingrese un numero decimal: ");
 	//scanf("%i", &n);
 	
-	i = 0;
-	while(n != 0)
-	{
-		bin[i] = n%2;
-		n = n/2;
-		i++;
-	}
-	i--;
-	printf("Binario: ");
-		
-	while(i >= 0)
-	{
-		printf("%i", bin[i]);
+		i = 0;
+		while(n != 0)
+		{
+			bin[i] = n%2;
+			n = n/2;
+			i++;
+		}
 		i--;
-	}
+		printf("Binario: ");
+			
+		while(i >= 0)
+		{
+			printf("%i", bin[i]);
+			i--;
+		}*/
+
 		
 	//for(i = 1; i <= n; i++)
 	//	printf("%i\n", binario);
 	
-	*/
 	
 	/*int max;
 	max = 79;
@@ -43,25 +44,43 @@ int main()
 	
 	//printf("%s", binario(79));
 	
-	int n, i, bin;
+	
+	//OPCION 1
+	int n, i, bin; 
 	n = 79;
 		
 		
 	printf("Binario: \n");
-	int nBits = sizeof(n)*8;
-	for(i = 0; i < nBits; i++)
+	for(int j = 0 ; j <= n; j++)
 	{
-		bin = n>>(nBits - i - 1)&1;
-		printf("%d", bin);
+		printf("%d: ", j+1);
+		int nBits = sizeof(n)*2;
+		for(i = 0; i < nBits; i++)
+		{
+			bin = n>>(nBits - i - 1)&1;
+			printf("%d", bin);
+		}
+		printf("\n");
 	}
-	printf("\n");
+
 	
-	//for(i = 0; i <= n; i++)
-	//	printf("%d\n", bin);
+	
+	//for(int j = 0 ; j <= n; j++)
+	//	printf("%d\n", n);
+	
+	//printf("%d", binario(79));
 		
 	return 0;
 	
 	
+}
+
+/*int binario(int num)
+{
+//	int bin;
+	for(int j=0; j<num; j++)
+		printf("%d\n", bin);
+	//	return bin;
 }
 
 /*char *binario(unsigned n)
