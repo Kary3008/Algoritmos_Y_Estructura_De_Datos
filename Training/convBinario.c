@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#define tam 5
 
 //char *binario(unsigned int n);
 //char *binario(unsigned int n);
@@ -47,24 +48,31 @@ int main()
 	
 	//OPCION 1
 	int n, i, bin; 
+	int binario[tam], num, nBits;
 	n = 79;
 		
 		
 	printf("Binario: \n");
-	for(int j = 0 ; j <= n; j++)
+	int j=0;
+	while(j <= n)
+	//for(int j = 1 ; j <= n; j++)
 	{
-		printf("%d: ", j+1);
-		int nBits = sizeof(n)*2;
-		for(i = 0; i < nBits; i++)
-		{
-			bin = n>>(nBits - i - 1)&1;
-			printf("%d", bin);
-		}
-		printf("\n");
+		printf("%d: \n", j);
+		
+		nBits = sizeof(j)*2;
+		//j++; 
+		
+		
+			for(i = 0; i < nBits; i++)
+			{
+				bin = j>>(nBits - i - 1)&1;
+				printf("%d", bin);
+			}
+			printf("\n");	
+			j++;	
 	}
-
-	
-	
+		//j++;
+	//}
 	//for(int j = 0 ; j <= n; j++)
 	//	printf("%d\n", n);
 	
