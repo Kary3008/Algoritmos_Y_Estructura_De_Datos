@@ -21,12 +21,22 @@ int main()
 	
 	printf("Ingresar elementos de la mochila\n");
 	
+	elemento[0].peso = 3;
+	elemento[0].valor = 12;
+	elemento[1].peso = 5;
+	elemento[1].valor = 25;
+	elemento[2].peso = 4;
+	elemento[2].valor = 42;
+	elemento[3].peso = 7;
+	elemento[3].valor = 30;
+	elemento[4].peso = 10;
+	elemento[4].valor = 30;
+	
+	
 	for(i = 0;i < n; i++)
 	{
-		printf("Peso %i: ", i+1);
-		scanf("%i", &elemento[i].peso);
-		printf("Valor %i: ", i+1);
-		scanf("%i", &elemento[i].valor);
+		printf("Peso %i: %d\n", i+1, elemento[i].peso);
+		printf("Valor %i: %d\n", i+1, elemento[i].valor);
 	}
 	
 	printf("Peso maximo de la mochila: %i\n", pesoMax);
