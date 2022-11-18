@@ -3,7 +3,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#define tam 5
 
 //char *binario(unsigned int n);
 //char *binario(unsigned int n);
@@ -48,7 +47,8 @@ int main()
 	
 	//OPCION 1
 	int n, i, bin; 
-	int binario[tam], num, nBits;
+	//int binario[tam],
+	int nBits;
 	n = 79;
 		
 		
