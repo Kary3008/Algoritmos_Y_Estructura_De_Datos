@@ -1,3 +1,12 @@
+/*
+	Name: Práctica 3
+	Copyright: @karyb3008
+	Author: Karina Bautista Bautista
+	Date: 18/11/22 01:48
+	Description: Exploración exhaustiva - problema de la mochila
+*/
+
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -14,8 +23,6 @@ int main()
 	int i, pesoMax, max, n;
 	n = 5;
 	pesoMax = 15;
-	
-	//printf("Elementos: %i", n);
 	
 	mochila elemento[n];
 	
@@ -63,22 +70,17 @@ int main()
 
 int conv_binario(int n)
 {
-	//int n,
-	int i, bin; 
-	//int binario[tam],
+	int i, bin;
 	int nBits;
-	//n = 79;
 		
 		
 	printf("Binario: \n");
 	int j=0;
 	while(j <= n)
-	//for(int j = 1 ; j <= n; j++)
 	{
 		printf("%d: ", j);
 		
 		nBits = sizeof(j)*2;
-		//j++; 
 		
 		
 			for(i = 0; i < nBits; i++)
