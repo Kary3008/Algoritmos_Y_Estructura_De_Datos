@@ -80,7 +80,7 @@ int conv_binario(int n)
 	{
 		printf("%d: ", j);
 		
-		nBits = sizeof(j)*2;
+		nBits = sizeof(j)*1;
 		
 		
 			for(i = 0; i < nBits; i++)
