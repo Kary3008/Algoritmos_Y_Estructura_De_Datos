@@ -95,12 +95,17 @@ void push(char x)
 void imprimir()
 {
     struct nodo *reco=raiz;
-    printf("Formula.\n");
-    while (reco!=NULL)
+    printf("\nFormula: ");
+    for(f = 0; f < strlen(formula); f++)
     {
-        printf("%d", reco->elemento);
+    	printf("%c", reco->elemento);	
+	}
+   /* while (reco!=NULL)
+    {
+    	
+        printf("%c", reco->elemento);
         reco=reco->sig;
-    }
+    }*/
     printf("\n");
 }
 
