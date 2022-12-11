@@ -26,37 +26,11 @@ int main()
 	char frase[maxSize];
 	
 	Frase(frase);
-	
-	int f;
-	char frase1, frase2;
-	push(frase[f]);
-	
-		for(f = 0; f <= maxSize; f++){
-			printf("%c", frase[f]);
-		}
-		frase1 = frase[f];
 		
-		int i=0;
-		int j;
-		
-		push(frase[i]);
-	
-		while(frase[i] != '\0')
-		{
-			i++;
-		}
-		for(j = i-1; j >= 0; j--)
-		{
-			printf("%c", frase[j]);
-			frase2 = frase[j];
-		}
-		for(f = 0; f < strlen(frase); f++)
-		{
-			if(frase1 != frase2)
-				printf("\nNo es un palindromo");
-			else
-				printf("\nEs un palindromo");
-		}
+		if(verificar(frase))
+			printf("\nEs un palindromo");
+		else
+			printf("\nNo es un palindromo");
 	
 	clean();
 	getch();
@@ -149,31 +123,35 @@ char frase2(char *frase)
 int verificar(char *frase)
 {
 	int f;
-	for(f = 0; f < strlen(frase); f++)
-	{
-		if(frase[f] != is_empty())		
-			push(frase[f]);
-		
-		int i=0;
-		int j;
+	//for(f = 0; f < strlen(frase); f++)
+//	{
+		char frase1, frase2;
+		push(frase[f]);
 	
-		for(f = 0; f < maxSize; f++){
+		for(f = 0; f <= maxSize; f++){
 			printf("%c", frase[f]);
 		}
-		//frase1 = frase[f];
+		frase1 = frase[f];
+		printf("\n");
+		int i=0;
+		int j;
+		
+		push(frase[i]);
 	
-		printf("\n\n");
-	
-		while(frase[i]!= '\0')
+		while(frase[i] != '\0')
 		{
 			i++;
 		}
-		for(j = i-1 ; j >= 0; j--)
+		for(j = i-1; j >= 0; j--)
 		{
 			printf("%c", frase[j]);
+			frase2 = frase[j];
 		}
-		
-	}
+		printf("\n");
+		if(frase == frase2)
+			push(frase[f]);
+				
+	//}
 		
 	if(is_empty())
 		return 1;
