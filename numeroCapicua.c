@@ -2,17 +2,14 @@
 #include <stdlib.h>
 #include <string.h>
 //ESTRUCTURAS
-typedef struct coche
+typedef struct num
 {
-    char matricula[10];
-    int modelo;
-    int color;
-    int marca;
-} Coche;
+    char capicua[10];
+} Num;
 
 typedef struct nodo
 {
-    Coche *dato; //informacion
+    Num *dato; //informacion
     struct nodo *sig; //apunta al otro nodo
 } Nodo;
 
@@ -22,17 +19,9 @@ typedef struct pila
     int total;
 } Pila;
 
-Coche* crearCoche(char matricula[10], int modelo, int color, int marca)
-{
-    Coche *aux = (Coche*)malloc(sizeof(Coche)); //tamaño
-    strcpy(aux->matricula, matricula);
-    aux->modelo = modelo;
-    aux->color = color;
-    aux->marca = marca;
-    return aux;
-}
-
-Nodo* crearNodo(Coche *coche);
+//FUNCIONES
+Num* crearNum(char capicua[10]);
+Nodo* crearNodo(Num *num);
 Pila* crearPila();
 int isEmpty(Pila *pila);
 void push(Pila *pila, Nodo *nodo); //nodo
@@ -40,24 +29,53 @@ void show(Pila *pila);
 Nodo* pop(Pila *pila);
 void vaciarPila(Pila *pila);
 
-//FUNCIONES
+
 int main()
 {
+
+    //Pila *p;
+    //Nodo *aux;
+    //p = crearPila();
+
+    char *numeroC = "1234321";
+    int a, b;
+    a = strlen(numeroC);
+    char capi[a];
+
     Pila *p;
     Nodo *aux;
-    //Coche *c1;
-    //Nodo *n;
     p = crearPila();
-    //c1 = crearCoche("AB1", 2022, 1, 1);
-    //n = crearNodo(c1);
-    //push(p, n); //ingresa el primer nodo AB1
-    push(p, crearNodo(crearCoche("CD9", 2022, 2, 1)));
-    push(p, crearNodo(crearCoche("D3008", 2021, 1, 1)));
+
+    push(p, crearNodo(crearNum(numeroC)));
+    
+    //int a, b;
+    //a = strlen(numeroC), b = 0;
+    //char capicua[a];
+
+    if(strcmp(numeroC, capi) == 0)
+		printf("Es un numero capicua\n");
+	else
+		printf("No es un numero capicua\n");    
+    
+
+    /*while (a != 0)
+    {
+        b = a%10;
+        a = a/10;
+        c = c*10 + b;
+    }
+    if(c == a)
+        printf("El numero es capicua\n");
+    else    
+        printf("El numero no es capicua\n");*/
+    
+    
+
+    push(p, crearNodo(crearNum("D3008")));
     show(p);
     printf("\n\n");
-    //pop(p);
     aux = pop(p);
-    printf("El nodo que salio de la pila es: %s\n", aux->dato->matricula);
+    printf("El nodo que salio de la pila es: %s\n", aux->dato->capicua);
     free(aux); //liberar memoria
     show(p);
     vaciarPila(p);
@@ -65,10 +83,18 @@ int main()
     return 0;
 }
 
-Nodo* crearNodo(Coche *coche)
+Num* crearNum(char capicua[10])
+{
+    Num *aux = (Num*)malloc(sizeof(Num)); //tamaño
+    strcpy(aux->capicua, capicua);
+    //aux->modelo = modelo;
+    return aux;
+}
+
+Nodo* crearNodo(Num *num)
 {
     Nodo *aux = (Nodo*)malloc(sizeof(Nodo));
-    aux->dato = coche;
+    aux->dato = num;
     aux->sig = NULL;
     return aux;
 }
@@ -107,13 +133,13 @@ void push(Pila *pila, Nodo *aux)
 void show(Pila *pila)
 {
     Nodo *aux = pila->tope;
-    Coche *c;
+    Num *c;
     if(!isEmpty(pila))
     {
         while(aux != NULL)
         {
             c = aux->dato;
-            printf("%s %d %d % d \n", c->matricula, c->modelo, c->color, c->marca);
+            printf("El nodo en la pila es: %s\n", c->capicua);
             aux = aux->sig;
         }
     }
