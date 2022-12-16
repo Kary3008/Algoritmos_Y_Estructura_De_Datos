@@ -21,13 +21,18 @@ int ultimo(stack *Pila);
 
 int main()
 {
-	char *numeroC = "1234321";
-	
+	stack Pila;
+	CrearPila(&Pila);
+	char *numeroC;
+	printf("Digite un numero: ");
+//	gets(numeroC);
+	scanf("%s", &numeroC);
 	int x = 0, l = strlen(numeroC), y = 0;
 	char capicua[l];
 	
-	stack Pila;
-	CrearPila(&Pila);
+	//stack Pila;
+	//CrearPila(&Pila);
+
 	
 	for(x = 0; x < l; x++)
 	{
@@ -45,7 +50,7 @@ int main()
 		printf("Es un numero capicua");
 	else
 		printf("No es un numero capicua");
-			
+					
 	return true;
 }
 

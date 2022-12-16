@@ -2,14 +2,17 @@
 #include <stdlib.h>
 #include <string.h>
 //ESTRUCTURAS
-typedef struct num
+typedef struct coche
 {
-    char capicua[10];
-} Num;
+    char matricula[10];
+    int modelo;
+    int color;
+    int marca;
+} Coche;
 
 typedef struct nodo
 {
-    Num *dato; //informacion
+    Coche *dato; //informacion
     struct nodo *sig; //apunta al otro nodo
 } Nodo;
 
@@ -19,9 +22,17 @@ typedef struct pila
     int total;
 } Pila;
 
-//FUNCIONES
-Num* crearNum(char capicua[10]);
-Nodo* crearNodo(Num *num);
+Coche* crearCoche(char matricula[10], int modelo, int color, int marca)
+{
+    Coche *aux = (Coche*)malloc(sizeof(Coche)); //tamaño
+    strcpy(aux->matricula, matricula);
+    aux->modelo = modelo;
+    aux->color = color;
+    aux->marca = marca;
+    return aux;
+}
+
+Nodo* crearNodo(Coche *coche);
 Pila* crearPila();
 int isEmpty(Pila *pila);
 void push(Pila *pila, Nodo *nodo); //nodo
@@ -29,22 +40,24 @@ void show(Pila *pila);
 Nodo* pop(Pila *pila);
 void vaciarPila(Pila *pila);
 
-
+//FUNCIONES
 int main()
 {
-    char *numeroC = "1234321";
-
     Pila *p;
     Nodo *aux;
+    //Coche *c1;
+    //Nodo *n;
     p = crearPila();
-
-    push(p, crearNodo(crearNum(numeroC)));
-
-    push(p, crearNodo(crearNum("D3008")));
+    //c1 = crearCoche("AB1", 2022, 1, 1);
+    //n = crearNodo(c1);
+    //push(p, n); //ingresa el primer nodo AB1
+    push(p, crearNodo(crearCoche("CD9", 2022, 2, 1)));
+    push(p, crearNodo(crearCoche("D3008", 2021, 1, 1)));
     show(p);
     printf("\n\n");
+    //pop(p);
     aux = pop(p);
-    printf("El nodo que salio de la pila es: %s\n", aux->dato->capicua);
+    printf("El nodo que salio de la pila es: %s\n", aux->dato->matricula);
     free(aux); //liberar memoria
     show(p);
     vaciarPila(p);
@@ -52,18 +65,10 @@ int main()
     return 0;
 }
 
-Num* crearNum(char capicua[10])
-{
-    Num *aux = (Num*)malloc(sizeof(Num)); //tamaño
-    strcpy(aux->capicua, capicua);
-    //aux->modelo = modelo;
-    return aux;
-}
-
-Nodo* crearNodo(Num *num)
+Nodo* crearNodo(Coche *coche)
 {
     Nodo *aux = (Nodo*)malloc(sizeof(Nodo));
-    aux->dato = num;
+    aux->dato = coche;
     aux->sig = NULL;
     return aux;
 }
@@ -102,13 +107,13 @@ void push(Pila *pila, Nodo *aux)
 void show(Pila *pila)
 {
     Nodo *aux = pila->tope;
-    Num *c;
+    Coche *c;
     if(!isEmpty(pila))
     {
         while(aux != NULL)
         {
             c = aux->dato;
-            printf("El nodo en la pila es: %s\n", c->capicua);
+            printf("%s %d %d % d \n", c->matricula, c->modelo, c->color, c->marca);
             aux = aux->sig;
         }
     }
