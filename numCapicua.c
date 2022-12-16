@@ -21,30 +21,30 @@ int ultimo(stack *Pila);
 
 int main()
 {
-	char *palabra = "1234321";
+	char *numeroC = "1234321";
 	
-	int x = 0, l = strlen(palabra), y = 0;
-	char paludismo[l];
+	int x = 0, l = strlen(numeroC), y = 0;
+	char capicua[l];
 	
 	stack Pila;
 	CrearPila(&Pila);
 	
 	for(x = 0; x < l; x++)
 	{
-		add(&Pila, palabra[x]);
+		add(&Pila, numeroC[x]);
 	}
 	
 	while(!isEmpty(&Pila))
 	{
-		paludismo[y] = Pila.num[Pila.tope];
+		capicua[y] = Pila.num[Pila.tope];
 		y++;
 		Delete(&Pila);
 	}
 	
-	if(strcmp(palabra, paludismo) == 0)
-		printf("Si es palindromo");
+	if(strcmp(numeroC, capicua) == 0)
+		printf("Es un numero capicua");
 	else
-		printf("No es palindromo");
+		printf("No es un numero capicua");
 			
 	return true;
 }
