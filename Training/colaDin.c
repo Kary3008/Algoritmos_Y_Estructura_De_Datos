@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#define true 1
+#define false 0
 
 //estructura de la cola
 struct nodo
@@ -15,9 +17,9 @@ struct nodo *ultimo = NULL;
 int vacia()
 {
 	if(primer == NULL)
-		return 1;
+		return true;
 	else 
-		return 0;
+		return false;
 }
 
 /*insertar elemento en la cola*/
@@ -60,6 +62,7 @@ int extraer()
 	}
 	else
 	{
+		printf("\nUnderflow\n");
 		return -1;
 	}
 }
@@ -68,13 +71,18 @@ int extraer()
 void imprimir()
 {
 	struct nodo *reco=primer;
-	printf("Listado completo de la Cola\n");
-	while(reco!=NULL)
+	if(!vacia())
 	{
-		printf("%i", reco->dato);
-		reco=reco->siguiente;
+		printf("\nListado completo de la Cola\n");
+		while(reco!=NULL)
+		{
+			printf("%i\n", reco->dato);
+			reco=reco->siguiente;
+		}
+		printf("\n");
 	}
-	printf("\n");
+	else
+		printf("\nLa pila esta vacia\n");
 }
 
 //liberar elementos de la Cola
@@ -94,11 +102,11 @@ void liberar()
 int menu()
 {
 	int op;
-	printf("Menú\n");
+	printf("\t\nMenu\n\n");
 	printf("\n1.Ingresar un elemento en la cola.");
 	printf("\n2.Extraer un elemento en la cola.");
 	printf("\n3.Recorrer y listar la cola.");
-	printf("\n0.Salir.");
+	printf("\n0.Salir.\n");
 	printf("Ingrese la opcion: ");
 	scanf("%d", &op);
 	return op;
@@ -112,14 +120,14 @@ int main()
 	{
 		if(opc==1)
 		{
-			printf("Ingrese un numero para la cola: ");
+			printf("\nIngrese un numero para la cola: ");
 			scanf("%d", &info);
 			insertar(info);
 			imprimir();
 		}
 		if(opc == 2)
 		{
-			printf("Extraer el elemento %d de la cola: ", extraer());
+			printf("\nExtraer el elemento %d de la cola\n", extraer());
 			imprimir();
 		}
 		if(opc == 3)

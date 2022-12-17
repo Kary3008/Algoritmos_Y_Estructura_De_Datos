@@ -21,17 +21,22 @@ int ultimo(stack *Pila);
 
 int main()
 {
-	stack Pila;
-	CrearPila(&Pila);
-	char *numeroC;
+	//stack Pila;
+	//CrearPila(&Pila);
+	//char numeroC;
+	//char *numeroC = "123431";
+
+	char *numeroC = (char*) malloc (sizeof (char));
 	printf("Digite un numero: ");
-//	gets(numeroC);
-	scanf("%s", &numeroC);
+	scanf ("%c", numeroC);
+	//char *numeC = numeroC;
+	//gets(*numeroC);
+	//scanf("%c", *numeroC);
 	int x = 0, l = strlen(numeroC), y = 0;
 	char capicua[l];
 	
-	//stack Pila;
-	//CrearPila(&Pila);
+	stack Pila;
+	CrearPila(&Pila);
 
 	
 	for(x = 0; x < l; x++)
