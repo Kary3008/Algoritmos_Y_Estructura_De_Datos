@@ -17,21 +17,13 @@ int isFull(stack *Pila);
 void add(stack *Pila, int n);
 void Delete(stack *Pila);
 int ultimo(stack *Pila);
-
+void NumeroCapicua(char *numeroC);
 
 int main()
 {
-	//stack Pila;
-	//CrearPila(&Pila);
-	//char numeroC;
-	//char *numeroC = "123431";
-
-	char *numeroC = (char*) malloc (sizeof (char));
-	printf("Digite un numero: ");
-	scanf ("%c", numeroC);
-	//char *numeC = numeroC;
-	//gets(*numeroC);
-	//scanf("%c", *numeroC);
+	char numeroC[10];
+	NumeroCapicua(numeroC);
+	
 	int x = 0, l = strlen(numeroC), y = 0;
 	char capicua[l];
 	
@@ -52,9 +44,9 @@ int main()
 	}
 	
 	if(strcmp(numeroC, capicua) == 0)
-		printf("Es un numero capicua");
+		printf("\nEs un numero capicua.");
 	else
-		printf("No es un numero capicua");
+		printf("\nNo es un numero capicua.");
 					
 	return true;
 }
@@ -106,4 +98,10 @@ void Delete(stack *Pila)
 int ultimo(stack *Pila)
 {
 		return Pila->num[Pila->tope];
+}
+
+void NumeroCapicua(char *numeroC)
+{
+	printf("Ingrese un numero: ");
+	gets(numeroC);
 }
