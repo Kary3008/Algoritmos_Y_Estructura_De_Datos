@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #define true 1
 #define false 0
 #define maxSize 10
@@ -16,7 +17,7 @@ struct nodo *primer = NULL;
 struct nodo *ultimo = NULL;
 //Funciones
 int vacia();
-void insertar(int x, char *y);
+void insertar(int x, char y);
 int extraer();
 void imprimir();
 void liberar();
@@ -63,7 +64,7 @@ int vacia()
 }
 
 /*insertar elemento en la cola*/
-void insertar(int x, char *y)
+void insertar(int x, char y)
 {
 	struct nodo *nuevo;
 	nuevo = malloc(sizeof(struct nodo));
