@@ -175,5 +175,5 @@ void menu()
     printf( " 3. MOSTRAR COLA             \n" );
     printf( " 4. PRODUCTOS                \n" );
     printf( "\n OPCION: " );
- 
+
 }

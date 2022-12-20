@@ -82,7 +82,7 @@ void imprimir()
 		printf("\n");
 	}
 	else
-		printf("\nLa pila esta vacia\n");
+		printf("\nLa cola esta vacia\n");
 }
 
 //liberar elementos de la Cola
