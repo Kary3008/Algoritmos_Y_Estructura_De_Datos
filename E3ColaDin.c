@@ -4,17 +4,20 @@
 #define maxSize 20
 #define CProductos 35
  
-typedef struct producto{
+typedef struct producto
+{
     char nombre[maxSize];
     int cant_Pro;
 }producto;
  
-typedef struct nodo{
+typedef struct nodo
+{
     struct producto cliente;
     struct nodo *sgte;
 }nodo;
  
-typedef struct cola{
+typedef struct cola
+{
     struct nodo *delante;
     struct nodo *atras ;
 }cola;
@@ -22,13 +25,12 @@ typedef struct cola{
 void encolar(struct cola *q, struct producto valor);
 struct producto desencolar(struct cola *q);
 void muestraCola(struct cola q);
-void muestraColaMas18(struct cola q);
-int is_full(struct cola q);
 void vaciaCola(struct cola *q);
+int is_full(struct cola q);
 void menu();
  
-int main(){
- 
+int main()
+{ 
     struct cola q;
     q.delante = NULL;
     q.atras = NULL;
@@ -43,6 +45,7 @@ int main(){
         switch(op){
  
             case 1:
+            	printf("\n1. AGREGAR CLIENTE\n");
                 printf("\nNombre del cliente: "); 
                 scanf("%s", &dato.nombre);
                 printf("Cantidad de Productos: "); 
@@ -53,34 +56,23 @@ int main(){
                 break;
  
             case 2:
+            	printf("\n2. ELIMINAR CLIENTE\n");
                 x = desencolar(&q);
                 printf("\nNombre %s desencolado...\n\n", x.nombre);
                 break;
  
             case 3:
-                printf("\n\n MOSTRANDO COLA\n\n");
+                printf("\n3. MOSTRANDO COLA\n\n");
                 if(q.delante != NULL) 
                     muestraCola(q);
                 else  printf( "\n\n\tCola vacia...!\n");
                 break;
  
             case 4:
-                printf( "\n\n MOSTRANDO COLA >= 18\n\n");
-                if(q.delante != NULL) 
-                    muestraColaMas18(q);
-                else  printf( "\n\n\tCola vacia...!\n");
-                break;
- 
- 
-            case 5:
-                vaciaCola( &q );
-                printf("\n\nHecho...\n\n");
-                break;
- 
-            case 6:
                 printf("VER PRODUCTOS\n");
                 if(q.delante != NULL) 
-                    is_full(q);
+                    if(is_full(q) == 0)
+                    	vaciaCola(&q);
                 else  printf( "\n\n\tCola vacia...!\n");
                 break;
  
@@ -90,15 +82,15 @@ int main(){
         }
         printf("\n\n");
  
-    }while(op != 7);
+    }while(op != 5);
  
     vaciaCola(&q);
  
     return 0;
 }
 
-void encolar(struct cola *q, struct producto valor){
- 
+void encolar(struct cola *q, struct producto valor)
+{
      struct nodo *aux = malloc(sizeof(struct nodo));
      aux->cliente = valor;
      aux->sgte = NULL;
@@ -111,8 +103,8 @@ void encolar(struct cola *q, struct producto valor){
      q->atras = aux;
 }
  
-struct producto desencolar(struct cola *q){
- 
+struct producto desencolar(struct cola *q)
+{ 
      struct producto nom ;
      struct nodo *aux ;
  
@@ -125,8 +117,8 @@ struct producto desencolar(struct cola *q){
      return nom;
 }
  
-void muestraCola(struct cola q){
- 
+void muestraCola(struct cola q)
+{ 
      struct nodo *aux;
  
      aux = q.delante;
@@ -138,43 +130,9 @@ void muestraCola(struct cola q){
      }
      printf("Fin de la cola\n");
 }
- 
-void muestraColaMas18(struct cola q){
- 
-     struct nodo *aux;
- 
-     aux = q.delante;
- 
-     while(aux != NULL){
-        if(aux->cliente.cant_Pro <= CProductos)
-            printf("%s -> ", aux->cliente.nombre);
-        aux = aux->sgte;
-     }
-     printf("Fin de la cola\n");
-}
 
-int is_full(struct cola q)
-{
-	struct nodo *aux;
-     aux = q.delante;
-     int a = CProductos;
-     while(aux != NULL){
-        if(aux->cliente.cant_Pro <= CProductos)
-        {
-        	a = a - aux->cliente.cant_Pro;
-	            printf("%s -> ", aux->cliente.nombre);
-	            printf("%i -> ", aux->cliente.cant_Pro);
-	            printf("%d \n", a);
-		}
-            //printf("%s -> ", aux->cliente.nombre);
-        aux = aux->sgte;
-        
-     }
-     printf("Fin de la cola\n");
-}
- 
-void vaciaCola(struct cola *q){
- 
+void vaciaCola(struct cola *q)
+{ 
      struct nodo *aux;
  
      while(q->delante != NULL){
@@ -187,16 +145,35 @@ void vaciaCola(struct cola *q){
      q->atras   = NULL;
 }
 
-void menu(){
- 
+int is_full(struct cola q)
+{
+	struct nodo *aux;
+     aux = q.delante;
+     int a = CProductos;
+     while(aux != NULL){
+        if(aux->cliente.cant_Pro <= a)
+        {
+        	a = a - aux->cliente.cant_Pro;
+	            printf("%s -> ", aux->cliente.nombre);
+	            printf("%i -> ", aux->cliente.cant_Pro);
+	            printf("%d \n", a);
+		}
+        else{
+            printf("%s solo contamos con %d disponibles\n", aux->cliente.nombre, a);
+        }
+        aux = aux->sgte;   
+     }
+     printf("Fin de la cola\n");
+}
+
+void menu()
+{ 
     printf( "\n           COLA" );
     printf( "\n ==========================\n" );
-    printf( " 1. ENCOLAR                  \n" );
-    printf( " 2. DESENCOLAR               \n" );
+    printf( " 1. AGREGAR CLIENTE          \n" );
+    printf( " 2. ELIMINAR CLIENTE         \n" );
     printf( " 3. MOSTRAR COLA             \n" );
-    printf( " 4. MOSTRAR COLA >= 18       \n" );
-    printf( " 5. VACIAR COLA              \n" );
-    printf( " 6. PRODUCTOS                   \n" );
+    printf( " 4. PRODUCTOS                \n" );
     printf( "\n OPCION: " );
  
 }
