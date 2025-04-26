@@ -1,0 +1,16 @@
+Ejercicio: Pila estática en C
+Implemente una pila utilizando un arreglo con las siguientes operaciones:
+- Push: Inserte un elemento en la pila. Asegúrese de verificar si la pila está llena antes de insertar (evite un desbordamiento).
+- Pop: Elimine y devuelva el elemento en la parte superior de la pila. Verifique si la pila está vacía antes de eliminar.
+- Peek: Obtenga el elemento en la cima de la pila sin eliminarlo.
+- isEmpty: Determine si la pila está vacía.
+- isFull: Determine si la pila está llena.
+
+
+Condiciones adicionales:
+- Establezca el tamaño máximo de la pila, por ejemplo, MAX = 10.
+- Realice un programa que permita probar estas operaciones. El programa debe incluir un menú interactivo para seleccionar las operaciones que se quieran realizar.
+
+
+Reto extra (opcional):
+Cree una función que copie los elementos de la pila original en otra pila estática sin cambiar el orden de los elementos.
